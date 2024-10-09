@@ -50,7 +50,7 @@ export default function Key({ albums }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const artistId = 1;
+  const artistId = 3;
   const albums = await getAlbumsByArtistId(artistId);
   console.log(albums);
   return {
