@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs'; // Biblioteca para manejar fechas
 
 const AlbumCard = ({ titulo, caratula, enlaceSpotify, fechaLanzamiento }) => {
+  const [caratulaUrl, setCaratulaUrl] = useState(null);
+
   // Calcular si el álbum es nuevo (menos de 3 meses desde la fecha de lanzamiento)
   const esNuevo = dayjs().diff(dayjs(fechaLanzamiento), 'month') < 3;
+
+  useEffect(() => {
+    // Convertir el Base64 a una URL válida si está presente
+    if (caratula) {
+      setCaratulaUrl(`data:image/jpeg;base64,${caratula}`);
+    }
+  }, [caratula]);
 
   return (
     <div className="flex flex-col md:flex-row items-center bg-white dark:bg-neutral-800 shadow-md rounded-lg p-4 max-w-xl mx-auto">
       {/* Carátula del álbum */}
       <div className="relative w-full h-64 md:w-1/3 md:h-auto overflow-hidden rounded-lg">
-        <Image
-          src={caratula}
-          alt={`Carátula de ${titulo}`}
-          width="500"
-          height="500"
-          className="rounded-lg"
-        />
+        {caratulaUrl && (
+          <Image
+            src={caratulaUrl}
+            alt={`Carátula de ${titulo}`}
+            width="500"
+            height="500"
+            className="rounded-lg"
+          />
+        )}
       </div>
 
       {/* Información del álbum */}
@@ -45,7 +56,6 @@ const AlbumCard = ({ titulo, caratula, enlaceSpotify, fechaLanzamiento }) => {
             Escuchar en Spotify
           </span>
         </Link>
-
       </div>
     </div>
   );

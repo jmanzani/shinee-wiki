@@ -13,13 +13,15 @@ export async function getAllAlbums() {
   return formattedAlbums;
 }
 export async function getAlbumsByArtistId(artistId) {
-  const sql = 'SELECT * FROM albums WHERE artist_id = ? order by release_date desc';
+  const sql = 'SELECT * FROM albums WHERE artist_id = ? ORDER BY release_date DESC';
   const albumsSQL = await query(sql, [artistId]);
-
   // Convertir la fecha de cada álbum a un formato de cadena
   const albums = albumsSQL.map(album => ({
     ...album,
-    release_date: album.release_date ? album.release_date.toISOString() : null
+    release_date: album.release_date ? album.release_date.toISOString() : null,
+    // Convertir el blob de la base de datos a base64
+    cover_image: album.cover_image ? Buffer.from(album.cover_image).toString('base64') : null,
   }));
+  
   return albums;
 }

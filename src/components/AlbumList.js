@@ -8,9 +8,10 @@ export default function AlbumList({ albums }) {
         <AlbumCard 
           key={album.id} // Clave única por álbum
           titulo={album.title} 
-          caratula={album.cover_image_url} 
+          //caratula={album.cover_image_url} 
           enlaceSpotify={album.spotify_url} 
           fechaLanzamiento={album.release_date} 
+          caratula={album.cover_image}
         />
       ))}
     </div>
