@@ -10,7 +10,7 @@ export default function Minho({ albums }) {
       title="SHINee Wiki - Lee Tae Min"
       description="SHINee Wiki - Lee Tae Min"
     >
-      <main classNameName="px-4">
+      <main className="px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 p-5 md:p-20 gap-5">
           <div>
             <div className="flex flex-col md:flex-row justify-center items-center">

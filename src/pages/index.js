@@ -6,7 +6,7 @@ export default function Home() {
       title="SHINee Wiki - Totalmente en Español"
       description="SHINee Wiki completamente en castellano."
     >
-      <main classNameName="px-4">
+      <main className="px-4">
 
       </main>
     </Layout>
